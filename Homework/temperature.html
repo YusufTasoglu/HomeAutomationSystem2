@@ -1,0 +1,181 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            width: 100%;
+            height: 80px;
+            background-color: 080710;
+        }
+
+        .navbar ul {
+            float: right;
+            margin-right: 20px;
+            display: inline;
+            margin-top: 20px;
+
+
+        }
+
+        h1 {
+            margin-top: 250px;
+        }
+
+        .navbar .logo {
+            display: inline-block;
+            margin-left: 40px;
+            margin-top: 20px;
+        }
+
+        .navbar .logo {
+            text-decoration: none;
+            font-size: 30px;
+        }
+
+        .navbar ul li {
+            list-style: none;
+            display: inline;
+            font-size: 20px;
+            margin: 10px;
+
+        }
+
+        form {
+            width: 300px;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        a {
+            color: white;
+        }
+
+        .value-button {
+            display: inline-block;
+            border: 1px solid #ddd;
+            margin: 0px;
+            width: 40px;
+            height: 20px;
+            text-align: center;
+            vertical-align: middle;
+            padding: 11px 0;
+            background: #eee;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .value-button:hover {
+            cursor: pointer;
+        }
+
+        form #decrease {
+            margin-right: -4px;
+            border-radius: 8px 0 0 8px;
+        }
+
+        form #increase {
+            margin-left: -4px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        form #input-wrap {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        input#number {
+            text-align: center;
+            border: none;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            margin: 0px;
+            width: 40px;
+            height: 40px;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        body {
+            background-color: orange;
+        }
+    </style>
+
+    <script>
+
+        function increaseValue() {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 24 : value;
+            value++;
+            document.getElementById('number').value = value;
+            if (value > 16) {
+                document.body.style.backgroundColor = 'orange';
+            }
+            if (value > 30) {
+                document.body.style.backgroundColor = 'red';
+            }
+
+        }
+
+        function decreaseValue() {
+            var value = parseInt(document.getElementById('number').value, 10);
+            value = isNaN(value) ? 24 : value;
+            value < 1 ? value = 1 : '';
+            value--;
+            document.getElementById('number').value = value;
+            if (value < 16)
+                document.body.style.backgroundColor = 'aqua';
+            if (value < 30 && value >= 16) {
+                document.body.style.backgroundColor = 'orange';
+            }
+
+        }
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="HomePage_c.php">Smart Home</a>
+            </div>
+            <ul>
+
+                <li><a href="Communication.php">Communication</a></li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+    <body>
+
+        <form>
+            <h1>Target Temperature:</h1>
+            <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+            <input type="number" id="number" value="24" />
+            <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+            <h1 style="margin-top: 25%;">Current Temperature:</h1>
+            <input type="number" id="number" value="22" />
+        </form>
+    </body>
+
+</html>
